@@ -1,0 +1,10 @@
+dependencies {
+    dependencies {
+        implementation 'software.amazon.awssdk:cloudformation'
+        implementation project(':core')
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
