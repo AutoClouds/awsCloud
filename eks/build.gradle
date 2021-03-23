@@ -1,0 +1,9 @@
+
+dependencies {
+    implementation 'software.amazon.awssdk:eks'
+    implementation project(':core')
+}
+
+test {
+    useJUnitPlatform()
+}
