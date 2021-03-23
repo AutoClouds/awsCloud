@@ -1,0 +1,9 @@
+
+dependencies {
+    implementation 'software.amazon.awssdk:ssm'
+    implementation project(':core')
+}
+
+test {
+    useJUnitPlatform()
+}
