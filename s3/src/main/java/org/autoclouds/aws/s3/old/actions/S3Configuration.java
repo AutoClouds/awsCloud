@@ -1,17 +1,16 @@
-package aws.s3.actions;
+package org.autoclouds.aws.s3.old.actions;
 
-import aws.s3.buckets.BaseS3;
-import com.amazonaws.services.s3.model.NotificationConfiguration;
+import software.amazon.awssdk.services.s3.S3Client;
 
 import java.util.Map;
 
-public class S3Configuration extends S3Client {
+public class S3Configuration extends org.autoclouds.aws.s3.old.actions.S3Client {
     private S3Configuration() {
         super();
     }
 
-    public static Map<String, NotificationConfiguration> getNotificationConfig(BaseS3 bucket) {
+   /* public static Map<String, NotificationConfiguration> getNotificationConfig(BaseS3 bucket) {
         return amazonS3.getBucketNotificationConfiguration(bucket.getBucketName())
                 .getConfigurations();
-    }
+    }*/
 }

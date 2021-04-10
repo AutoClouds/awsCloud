@@ -13,12 +13,29 @@ allprojects {
     }
 
     dependencies {
-        implementation platform('software.amazon.awssdk:bom:2.15.0')
-        testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+        implementation platform('software.amazon.awssdk:bom:2.16.24')
+        implementation platform('com.amazonaws:aws-java-sdk-bom:1.11.991')
+        testImplementation(platform('org.junit:junit-bom:5.7.1'))
+        testImplementation 'org.junit.jupiter:junit-jupiter-api'
+        testImplementation 'org.junit.jupiter:junit-jupiter-params'
         testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+        testCompile "org.testcontainers:junit-jupiter:1.15.2"
+        testCompile "org.testcontainers:localstack:1.15.2"
     }
 }
 
-test {
-    useJUnitPlatform()
+task testReport(type: TestReport) {
+    destinationDir = file("$buildDir/reports/allTests")
+    // Include the results from the `test` task in all subprojects
+    reportOn getTasksByName("test", true)
 }
+
+subprojects {
+    // Disable the test report for the individual test task
+    test {
+        reports.html.enabled = false
+        useJUnitPlatform()
+        finalizedBy(testReport)
+    }
+}
+

@@ -1,8 +1,5 @@
 dependencies {
     implementation 'software.amazon.awssdk:s3'
+    implementation 'com.amazonaws:aws-java-sdk-s3'
     implementation project(':core')
-}
-
-test {
-    useJUnitPlatform()
 }

@@ -1,10 +1,10 @@
-package aws.s3.actions;
+package org.autoclouds.aws.s3.old.actions;
 
-import com.amazonaws.services.s3.model.ObjectListing;
+/*import com.amazonaws.services.s3.model.ObjectListing;
 import com.amazonaws.services.s3.model.S3ObjectSummary;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.IOUtils;*/
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -23,13 +23,12 @@ downloadBucketToFolder, downloadToFile, asyncDownloadToFile,
  */
 
 
-@Slf4j
 public class S3ObjectRetriever extends S3Client {
 
     private S3ObjectRetriever() {
     }
 
-    public static List<S3ObjectSummary> getSummaries(String bucketName, String prefix) {
+    /*public static List<S3ObjectSummary> getSummaries(String bucketName, String prefix) {
         log.info("Getting summaries for '{}' from bucket '{}'", prefix, bucketName);
         ObjectListing listing = amazonS3.listObjects(bucketName, prefix);
         List<S3ObjectSummary> summaries = listing.getObjectSummaries();
@@ -78,5 +77,5 @@ public class S3ObjectRetriever extends S3Client {
     public static void downloadBucketToFolder(String bucketName, String key, File file) {
         log.info("Downloading folder '{}' from bucket '{}' to '{}'", key, bucketName, file.getPath());
         getTransferManager().downloadDirectory(bucketName, key, file).waitForCompletion();
-    }
+    }*/
 }

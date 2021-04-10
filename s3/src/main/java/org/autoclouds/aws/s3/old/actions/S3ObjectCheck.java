@@ -1,10 +1,11 @@
-package aws.s3.actions;
+package org.autoclouds.aws.s3.old.actions;
 
-import lombok.extern.slf4j.Slf4j;
-import org.awaitility.core.ConditionTimeoutException;
+/*import lombok.extern.slf4j.Slf4j;
+import org.awaitility.core.ConditionTimeoutException;*/
+import software.amazon.awssdk.services.s3.S3Client;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
-import static org.awaitility.Awaitility.await;
+/*import static org.awaitility.Awaitility.await;*/
 
 
 /*
@@ -15,39 +16,38 @@ Initialization using constructor
 
  */
 
-@Slf4j
-public class S3ObjectCheck extends S3Client {
+public class S3ObjectCheck extends org.autoclouds.aws.s3.old.actions.S3Client {
 
     private S3ObjectCheck() {
     }
 
     private static final int DEFAULT_TIMEOUT = 30;
 
-    public static boolean doesObjectExist(String bucketName, String key) {
+    /*public static boolean doesObjectExist(String bucketName, String key) {
         return amazonS3.doesObjectExist(bucketName, key);
-    }
+    }*/
 
     /**
      * @param key     - exact name of object key to wait for
      * @return true - if object was found within DEFAULT_TIMEOUT. false - if not found.
      */
-    public static boolean waitAndCheckIfObjectExists(String bucketName, String key) {
+    /*public static boolean waitAndCheckIfObjectExists(String bucketName, String key) {
         return waitAndCheckIfObjectExists(bucketName, key, DEFAULT_TIMEOUT);
-    }
+    }*/
 
     /**
      * @param key     - exact name of object key to wait for
      * @param timeout - timeout in seconds
      * @return true - if object was found within given timeout. false - if not found.
      */
-    public static boolean waitAndCheckIfObjectExists(String bucketName, String key, int timeout) {
+    /*public static boolean waitAndCheckIfObjectExists(String bucketName, String key, int timeout) {
         try {
             waitForObject(bucketName, key, timeout);
         } catch (ConditionTimeoutException e) {
             return false;
         }
         return true;
-    }
+    }*/
 
     /**
      * Use when:
@@ -58,7 +58,7 @@ public class S3ObjectCheck extends S3Client {
      * @throws ConditionTimeoutException If condition was not fulfilled within DEFAULT_TIMEOUT.
      */
     public static void waitForObject(String bucketName, String key) {
-        waitForObject(bucketName, key, DEFAULT_TIMEOUT);
+        //waitForObject(bucketName, key, DEFAULT_TIMEOUT);
     }
 
     /**
@@ -70,7 +70,7 @@ public class S3ObjectCheck extends S3Client {
      * @param timeout - timeout in seconds
      * @throws ConditionTimeoutException If condition was not fulfilled within the given time period.
      */
-    public static void waitForObject(String bucketName, String key, int timeout) {
+    /*public static void waitForObject(String bucketName, String key, int timeout) {
         log.info("Waiting {}s for '{}' in bucket '{}'...", timeout, key, bucketName);
         try {
             await()
@@ -82,7 +82,7 @@ public class S3ObjectCheck extends S3Client {
             throw new ConditionTimeoutException(String.format(
                     "Wait %ss. timeout! Object %s doesn't exist in bucket %s.", timeout, key, bucketName), e);
         }
-    }
+    }*/
 
     public static void waitForObjects(String bucketName, String prefix, int expectedCount) {
         waitForObjects(bucketName, prefix, expectedCount, 40);
@@ -96,7 +96,7 @@ public class S3ObjectCheck extends S3Client {
      * @param prefix - prefix under which to wait for objects
      */
     public static void waitForObjects(String bucketName, String prefix, int expectedCount, int timeout) {
-        log.info("Waiting {}s for {} objects in {}/{}...", timeout, expectedCount, bucketName, prefix);
+        /*log.info("Waiting {}s for {} objects in {}/{}...", timeout, expectedCount, bucketName, prefix);
         try {
             await()
                     .pollDelay(0, SECONDS)
@@ -111,7 +111,7 @@ public class S3ObjectCheck extends S3Client {
             throw new ConditionTimeoutException(String.format(
                     "Wait %ss. timeout! Expected %s objects, but found %s in %s/%s",
                     timeout, expectedCount, S3ObjectRetriever.getKeys(bucketName, prefix).size(), bucketName, prefix), e);
-        }
+        }*/
     }
 
 }

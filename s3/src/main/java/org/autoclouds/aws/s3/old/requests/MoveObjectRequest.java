@@ -1,10 +1,5 @@
-package aws.s3.requests;
+package org.autoclouds.aws.s3.old.requests;
 
-import lombok.Builder;
-import lombok.Getter;
-
-@Getter
-@Builder
 public class MoveObjectRequest {
     private String sourceBucket;
     private String destinationBucket;

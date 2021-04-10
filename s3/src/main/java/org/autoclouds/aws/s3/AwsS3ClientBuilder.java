@@ -8,6 +8,8 @@ import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.S3ClientBuilder;
 
+import java.net.URI;
+
 public class AwsS3ClientBuilder implements Authentication<AwsS3Client> {
     private S3ClientBuilder s3ClientBuilder;
 
@@ -17,6 +19,11 @@ public class AwsS3ClientBuilder implements Authentication<AwsS3Client> {
 
     public static AwsS3ClientBuilder forRegion(Region region) {
         return new AwsS3ClientBuilder(region);
+    }
+
+    public AwsS3ClientBuilder withEndpoint(URI endpointOverride) {
+        s3ClientBuilder.endpointOverride(endpointOverride);
+        return this;
     }
 
     @Override

@@ -1,10 +1,6 @@
-package aws.s3.requests;
+package org.autoclouds.aws.s3.old.requests;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 
-@AllArgsConstructor
-@Getter
 public class DoesObjectExistRequest {
     private String bucketName;
     private String key;
